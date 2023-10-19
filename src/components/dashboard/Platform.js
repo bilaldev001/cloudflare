@@ -3,21 +3,21 @@ import CustomInputField from "../dynamic/CustomInputField";
 import CustomTabs from "../dynamic/CustomTabs";
 import CustomTable from "../dynamic/CustomTable";
 import Image from "next/image";
-import usd from "../../../node_modules/cryptocurrency-icons/svg/color/usd.svg";
-import bts from "../../../node_modules/cryptocurrency-icons/svg/color/bts.svg";
-import usdc from "../../../node_modules/cryptocurrency-icons/svg/color/usdc.svg";
-import eth from "../../../node_modules/cryptocurrency-icons/svg/color/eth.svg";
-import xrp from "../../../node_modules/cryptocurrency-icons/svg/color/xrp.svg";
-import ada from "../../../node_modules/cryptocurrency-icons/svg/color/ada.svg";
-import atom from "../../../node_modules/cryptocurrency-icons/svg/color/atom.svg";
-import sol from "../../../node_modules/cryptocurrency-icons/svg/color/sol.svg";
-import trx from "../../../node_modules/cryptocurrency-icons/svg/color/trx.svg";
-import ltc from "../../../node_modules/cryptocurrency-icons/svg/color/ltc.svg";
-import matic from "../../../node_modules/cryptocurrency-icons/svg/color/matic.svg";
-import usdt from "../../../node_modules/cryptocurrency-icons/svg/color/usdt.svg";
-import doge from "../../../node_modules/cryptocurrency-icons/svg/color/doge.svg";
-import btc from "../../../node_modules/cryptocurrency-icons/svg/color/btc.svg";
-// import generic from "../../../node_modules/cryptocurrency-icons/svg/color/generic.svg";
+import usd from "../../assets/icons/usd.svg";
+import bts from "../../assets/icons/bts.svg";
+import usdc from "../../assets/icons/usdc.svg";
+import eth from "../../assets/icons/eth.svg";
+import xrp from "../../assets/icons/xrp.svg";
+import ada from "../../assets/icons/ada.svg";
+import atom from "../../assets/icons/atom.svg";
+import sol from "../../assets/icons/sol.svg";
+import trx from "../../assets/icons/trx.svg";
+import ltc from "../../assets/icons/ltc.svg";
+import matic from "../../assets/icons/matic.svg";
+import usdt from "../../assets/icons/usdt.svg";
+import doge from "../../assets/icons/doge.svg";
+import btc from "../../assets/icons/btc.svg";
+import generic from "../../assets/icons/generic.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { tradingData, getPrices, getBars } from "@/store/storeIndex";
 
@@ -99,7 +99,7 @@ const Platform = ({ setPair, pair }) => {
       case "btc":
         return btc;
       default:
-        return btc;
+        return generic;
     }
   };
   const [firstPart, secondPart] = pair

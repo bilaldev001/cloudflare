@@ -14,7 +14,7 @@ export default function Home() {
   const [price, setPrice] = useState(1);
   const [seconds, setSeconds] = useState(10);
   const [betHistory, setBetHistory] = useState([]);
-  const [betTime, setBetTime] = useState();
+  const [betTime, setBetTime] = useState(new Date());
   const [showBetColumn, setShowBetColumn] = useState(false);
   const [showBetSidebar, setShowBetSidebar] = useState(false);
   const [showPlatformSidebar, setShowPlatformSidebar] = useState(false);

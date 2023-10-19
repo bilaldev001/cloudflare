@@ -1,62 +1,62 @@
 const pairIconMapping = {
   USD: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/usd.svg",
+    flagUrl: "/assets/usd.svg",
     tableHeaders: "crypto",
   },
   BTS: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/bts.svg",
+    flagUrl: "/assets/bts.svg",
     tableHeaders: "crypto",
   },
   USDC: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/usdc.svg",
+    flagUrl: "/assets/usdc.svg",
     tableHeaders: "crypto",
   },
   ETH: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/eth.svg",
+    flagUrl: "/assets/eth.svg",
     tableHeaders: "crypto",
   },
   XRP: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/xrp.svg",
+    flagUrl: "/assets/xrp.svg",
     tableHeaders: "crypto",
   },
   ADA: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/ada.svg",
+    flagUrl: "/assets/ada.svg",
     tableHeaders: "crypto",
   },
   ATOM: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/atom.svg",
+    flagUrl: "/assets/atom.svg",
     tableHeaders: "crypto",
   },
   SOL: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/sol.svg",
+    flagUrl: "/assets/sol.svg",
     tableHeaders: "crypto",
   },
   TRX: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/trx.svg",
+    flagUrl: "/assets/trx.svg",
     tableHeaders: "crypto",
   },
   LTC: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/ltc.svg",
+    flagUrl: "/assets/ltc.svg",
     tableHeaders: "crypto",
   },
   MATIC: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/matic.svg",
+    flagUrl: "/assets/matic.svg",
     tableHeaders: "crypto",
   },
   USDT: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/usdt.svg",
+    flagUrl: "/assets/usdt.svg",
     tableHeaders: "crypto",
   },
   DOGE: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/doge.svg",
+    flagUrl: "/assets/doge.svg",
     tableHeaders: "crypto",
   },
   BTC: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/btc.svg",
+    flagUrl: "/assets/btc.svg",
     tableHeaders: "crypto",
   },
   GENERIC: {
-    flagUrl: "../../../node_modules/cryptocurrency-icons/svg/color/generic.svg",
+    flagUrl: "/assets/generic.svg",
   },
   TWD: {
     flagUrl: "https://logo.twelvedata.com/forex/twd.png",

@@ -26,14 +26,14 @@ const DashboardDetails = (props) => {
 
   useEffect(() => {
     console.log("Connecting to WebSocket server...");
-    const newSocket = io('wss://ethicalbetting.org:8443', {
+    const newSocket = io.connect('wss://ethicalbetting.org:8443', {
       transports: ["websocket"],
     });
-    console.log({ newSocket });
     newSocket.on("connect", () => {
       console.log("Connected to WebSocket server");
     });
 
+    console.log({ newSocket });
     setSocket(newSocket);
 
     return () => {

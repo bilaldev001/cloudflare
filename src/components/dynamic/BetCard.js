@@ -43,9 +43,8 @@ const BetCard = (props) => {
     <>
       <div className="relative bg-transparent p-5 my-[12px] flex items-center justify-center border-2 border-dashed border-gray-700 flex-col rounded-[12px]">
         <div
-          className={`flex items-center justify-start w-full gap-1  mb-4 ${
-            betType === "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
-          }`}
+          className={`flex items-center justify-start w-full gap-1  mb-4 ${betType === "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
+            }`}
         >
           <Image
             src={betType === "lower" ? betLower : betHigher}
