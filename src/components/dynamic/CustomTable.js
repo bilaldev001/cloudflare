@@ -1,43 +1,58 @@
 "use client";
 
 import Image from "next/image";
-import starIcon from "../../assets/icons/starIcon.svg";
 import { useEffect, useState } from "react";
 import pairIconMapping from "@/assets/icons/PairIcons";
 import { BiDownArrowAlt, BiUpArrowAlt } from "react-icons/bi";
+import { AiOutlineStar, AiTwotoneStar } from "react-icons/ai";
 
 const CustomTable = ({ thead, setPair, allData }) => {
+  const [fav, setFav] = useState(null);
+  const [activeTrade, setActiveTrade] = useState(0);
+
   const [pairSorting, setPairSorting] = useState(true);
   const [pairSortable, setPairSortable] = useState(false);
+  const [ascendingSort, setAscendingSort] = useState(false);
 
   const [payoutSorting, setPayoutSorting] = useState(true);
   const [payoutSortable, setPayoutSortable] = useState(false);
 
   const [sortedData, setSortedData] = useState([]);
-
   useEffect(() => {
     setSortedData(allData);
   }, [allData]);
 
   const sortData = (key) => {
-    const formatedData = allData.sort((a, b) => {
-      if (key === "payouts") {
-        setPayoutSorting((prev) => !prev);
-        setPairSortable(false);
+    let formatedData;
+    if (key === "payouts") {
+      setPayoutSorting(!payoutSorting);
+      setPairSortable(false);
+      formatedData = allData.sort((a, b) => {
         return payoutSorting ? a.payout - b.payout : b.payout - a.payout;
+      });
+    } else {
+      setPairSorting(!pairSorting);
+      setPayoutSortable(false);
+      if (!ascendingSort) {
+        formatedData = allData.sort((a, b) => {
+          let fa = a.name.toUpperCase().split("/")[0],
+            fb = b.name.toUpperCase().split("/")[0];
+          return pairSorting && fa > fb ? 1 : -1;
+        });
+        setAscendingSort(true);
       } else {
-        setPairSorting((prev) => !prev);
-        setPayoutSortable(false);
-        let fa = a.name.toUpperCase(),
-          fb = b.name.toUpperCase();
-        return pairSorting && fa < fb ? -1 : 1;
+        formatedData = allData.sort((a, b) => {
+          let fa = a.name.toUpperCase().split("/")[0],
+            fb = b.name.toUpperCase().split("/")[0];
+          return pairSorting && fa < fb ? 1 : -1;
+        });
+        setAscendingSort(false);
       }
-    });
+    }
     setSortedData(formatedData);
   };
 
   const sortableHandler = (key) => {
-    console.log({ key });
     if (key === "Payouts") {
       setPayoutSortable(true);
       setPairSortable(false);
@@ -45,6 +60,45 @@ const CustomTable = ({ thead, setPair, allData }) => {
       setPayoutSortable(false);
       setPairSortable(true);
     }
+  };
+
+  const arrowHandler = (th) => {
+    if (th === "Pairs" && pairSortable && pairSorting) {
+      return (
+        <BiDownArrowAlt
+          className="text-lg cursor-pointer text-yellow-600"
+          onClick={() => sortData("name")}
+        />
+      );
+    } else if (th === "Pairs" && pairSortable && !pairSorting) {
+      return (
+        <BiUpArrowAlt
+          className="text-lg cursor-pointer text-yellow-600"
+          onClick={() => sortData("name")}
+        />
+      );
+    }
+
+    if (th === "Payouts" && payoutSortable && payoutSorting) {
+      return (
+        <BiDownArrowAlt
+          className="text-lg cursor-pointer text-yellow-600"
+          onClick={() => sortData("payouts")}
+        />
+      );
+    } else if (th === "Payouts" && payoutSortable && !payoutSorting) {
+      return (
+        <BiUpArrowAlt
+          className="text-lg cursor-pointer text-yellow-600"
+          onClick={() => sortData("payouts")}
+        />
+      );
+    }
+  };
+
+  const activeTabHandler = (index, name) => {
+    setPair(name);
+    setActiveTrade(index);
   };
 
   return (
@@ -58,25 +112,9 @@ const CustomTable = ({ thead, setPair, allData }) => {
                   key={index}
                   className="pb-4 text-center w-[115px] text-gray-600"
                 >
-                  <div
-                    className="flex items-center gap-2 justify-center cursor-pointer"
-                    onClick={() => sortableHandler(th)}
-                  >
-                    {th}
-                    {th === "Pairs" && pairSortable && pairSorting ? <BiDownArrowAlt
-                      className="text-lg cursor-pointer text-yellow-600"
-                      onClick={() => sortData("pairs")}
-                    /> : th === "Pairs" && <BiUpArrowAlt
-                      className="text-lg cursor-pointer text-yellow-600"
-                      onClick={() => sortData("pairs")}
-                    />}
-                    {th === "Payouts" && payoutSortable && payoutSorting ? <BiDownArrowAlt
-                      className="text-lg cursor-pointer text-yellow-600"
-                      onClick={() => sortData("payouts")}
-                    /> : th === "Payouts" && <BiUpArrowAlt
-                      className="text-lg cursor-pointer text-yellow-600"
-                      onClick={() => sortData("payouts")}
-                    />}
+                  <div className="flex items-center gap-2 justify-center cursor-pointer">
+                    <span onClick={() => sortableHandler(th)}>{th}</span>
+                    {arrowHandler(th)}
                   </div>
                 </th>
               );
@@ -112,12 +150,26 @@ const CustomTable = ({ thead, setPair, allData }) => {
               return (
                 <tr
                   key={index}
-                  onClick={() => setPair(item.name)}
-                  className="cursor-pointer"
+                  onClick={() => activeTabHandler(index, item.name)}
+                  className={`${
+                    activeTrade === index
+                      ? "cursor-pointer bg-[#203553] rounded"
+                      : "cursor-pointer"
+                  }`}
                 >
                   <td className="py-2 text-center flex justify-center">
                     <div className="flex justify-between gap-2 w-max">
-                      <Image src={starIcon} alt="start" />
+                      {fav !== index ? (
+                        <AiOutlineStar
+                          className="text-xl"
+                          onClick={() => setFav(index)}
+                        />
+                      ) : (
+                        <AiTwotoneStar
+                          className="text-xl text-yellow-600"
+                          onClick={() => setFav(index)}
+                        />
+                      )}
                       <Image
                         src={currencyImage1?.flagUrl}
                         alt="currencyIcon"

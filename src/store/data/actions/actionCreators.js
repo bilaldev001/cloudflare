@@ -12,19 +12,19 @@ export const tradingData = () => dispatch => {
 
                     const finalForexData = forexData.map(forex => {
                         if (payoutResponse.data.hasOwnProperty(forex.name)) {
-                            return { ...forex, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
+                            return { ...forex, isFav: false, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
                         }
                     }).filter(el => !!el);
 
                     const finalCryptoData = cryptoData.map(forex => {
                         if (payoutResponse.data.hasOwnProperty(forex.name)) {
-                            return { ...forex, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
+                            return { ...forex, isFav: false, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
                         }
                     }).filter(el => !!el);
 
                     const finalStockData = stocksData.map(forex => {
                         if (payoutResponse.data.hasOwnProperty(forex.name)) {
-                            return { ...forex, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
+                            return { ...forex, isFav: false, payout: +(payoutResponse.data[forex.name] * 100).toFixed(1) };
                         }
                     }).filter(el => !!el);
                     dispatch({

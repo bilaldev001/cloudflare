@@ -4,11 +4,14 @@ import Image from "next/image";
 import betHigher from "../../assets/icons/betHigher.svg";
 import betLower from "../../assets/icons/betLower.svg";
 import React, { useState, useEffect } from "react";
+import { AiOutlineStar } from "react-icons/ai";
+import { BiSolidImageAlt } from "react-icons/bi";
 
 const BetCard = (props) => {
   const { bet } = props;
   const { price, time, betType, seconds } = bet;
   const [progress, setProgress] = useState(0);
+  console.log(time);
 
   const formatTime = (date) => {
     const hours = date?.getHours().toString().padStart(2, "0");
@@ -42,9 +45,21 @@ const BetCard = (props) => {
   return (
     <>
       <div className="relative bg-transparent p-5 my-[12px] flex items-center justify-center border-2 border-dashed border-gray-700 flex-col rounded-[12px]">
+        <div className="flex-col lg:flex-row items-start flex lg:justify-between lg:items-center w-full">
+          <div className="flex items-center">
+            <AiOutlineStar className="text-[#8f9bab]" />
+            <p className="text-[#8f9bab]">
+              BTC/USD <span className="text-[#31cd86]">0.81%</span>
+            </p>
+          </div>
+          <div>
+            <BiSolidImageAlt size={20} className="text-[#8f9bab]" />
+          </div>
+        </div>
         <div
-          className={`flex items-center justify-start w-full gap-1  mb-4 ${betType === "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
-            }`}
+          className={`flex items-center justify-start w-full gap-1  mb-4 ${
+            betType === "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
+          }`}
         >
           <Image
             src={betType === "lower" ? betLower : betHigher}
@@ -90,6 +105,7 @@ const BetCard = (props) => {
           setProgress={setProgress}
           progress={progress}
           durationInSeconds={seconds}
+          betType={betType}
         />
       </div>
     </>
@@ -98,7 +114,12 @@ const BetCard = (props) => {
 
 export default BetCard;
 
-const ProgressBarWithTimer = ({ durationInSeconds, setProgress, progress }) => {
+const ProgressBarWithTimer = ({
+  betType,
+  durationInSeconds,
+  setProgress,
+  progress,
+}) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prevProgress) => {
@@ -114,11 +135,66 @@ const ProgressBarWithTimer = ({ durationInSeconds, setProgress, progress }) => {
   }, [durationInSeconds]);
 
   return (
-    <div className="w-full h-2 bg-gray-500 rounded-md overflow-hidden">
-      <div
-        className="h-full text-center text-white bg-[#309bee]"
-        style={{ width: `${progress}%` }}
-      ></div>
-    </div>
+    <>
+      <div className="w-full h-2 bg-gray-500 rounded-md overflow-hidden">
+        <div
+          className="h-full text-center text-white bg-[#309bee]"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+      {progress == 100 && (
+        <div className="bg-black w-full p-2 rounded mt-2">
+          <div className="flex-col lg:flex-row flex lg:items-center lg:justify-between">
+            <div className="flex items-center">
+              <p className="text-[12px] w-[95px] text-[#309bee]">
+                Your Prediction &nbsp;
+              </p>
+              <span
+                className={`text-[12px] ${
+                  betType == "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
+                }`}
+              >
+                {betType === "lower" ? "Lower" : "Higher"}
+              </span>
+            </div>
+            <p className="text-[12px] text-[#309bee]">
+              Actual &nbsp;
+              <span
+                className={`text-[12px] ${
+                  betType == "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
+                }`}
+              >
+                {betType === "lower" ? "Lower" : "Higher"}
+              </span>
+            </p>
+          </div>
+          <div className="flex items-center justify-between ">
+            <div className="flex items-center">
+              <p className="text-[12px] w-[95px] py-1 text-[#309bee]">
+                Payout &nbsp;
+              </p>
+              <span
+                className={`text-[12px] ${
+                  betType == "lower" ? "text-[#f1305f]" : "text-[#31cd86]"
+                }`}
+              >
+                $0
+              </span>
+            </div>
+            <p
+              className={`text-[12px] py-1 text-[#309bee] ${
+                betType == "lower" ? "hidden" : "block"
+              }`}
+            >
+              Profit &nbsp; <span className="text-green-500">$15</span>
+            </p>
+          </div>
+          <div className="flex items-center">
+            <p className="text-[12px] w-[95px] text-[#309bee]">No</p>
+            <span className="text-white text-[12px]">#asdfasdfa82f283</span>
+          </div>
+        </div>
+      )}
+    </>
   );
 };

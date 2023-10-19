@@ -5,7 +5,7 @@ import Dropdown from "./dynamic/Dropdown";
 
 const MainNavbar = () => {
   const items = [
-    { route: "/dashboard", title: "Dashboard" },
+    { route: "/", title: "Dashboard" },
     { route: "/logout", title: "Logout" },
   ];
   return (

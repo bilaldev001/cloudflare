@@ -20,6 +20,7 @@ import generic from "../../assets/icons/generic.svg";
 
 const DashboardChart = (props) => {
   const { onBet, pair } = props;
+
   const getImageByType = (type) => {
     switch (type) {
       case "usd":

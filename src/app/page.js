@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
-import DashboardChart from '@/components/dashboard/DashboardChart';
-import DashboardDetails from '@/components/dashboard/DashboardDetails';
-import Platform from '@/components/dashboard/Platform';
-import AnimatedSidebar from '@/components/dynamic/AnimatedSidebar';
-import BetCard from '@/components/dynamic/BetCard';
-import BetSidebar from '@/components/dynamic/BetSideBar';
-import React, { useState } from 'react';
+import DashboardChart from "@/components/dashboard/DashboardChart";
+import DashboardDetails from "@/components/dashboard/DashboardDetails";
+import Platform from "@/components/dashboard/Platform";
+import AnimatedSidebar from "@/components/dynamic/AnimatedSidebar";
+import BetCard from "@/components/dynamic/BetCard";
+import BetSidebar from "@/components/dynamic/BetSideBar";
+import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
-
 
 export default function Home() {
   const [price, setPrice] = useState(1);
@@ -74,10 +73,11 @@ export default function Home() {
             <Platform setPair={setPair} pair={pair} />
           </div>
           <div
-            className={`pb-[40px] ${showBetColumn
-              ? "col-span-12 md:col-span-8 lg:col-span-4 xl:col-span-5"
-              : "col-span-12 lg:col-span-7 xl:col-span-8"
-              } transition-all`}
+            className={`pb-[40px] ${
+              showBetColumn
+                ? "col-span-12 md:col-span-8 lg:col-span-4 xl:col-span-5"
+                : "col-span-12 lg:col-span-7 xl:col-span-8"
+            } transition-all`}
           >
             <DashboardChart onBet={addNewBet} pair={pair} />
           </div>
